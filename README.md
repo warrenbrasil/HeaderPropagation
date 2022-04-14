@@ -1,4 +1,4 @@
-[![build-and-publish](https://github.com/warrenbrasil/HeaderPropagation/actions/workflows/build-and-publish.yml/badge.svg?branch=master)](https://github.com/warrenbrasil/HeaderPropagation/actions/workflows/build-and-publish.yml)
+[![build-and-publish Workflow Status](https://github.com/warrenbrasil/HeaderPropagation/actions/workflows/build-and-publish.yml/badge.svg?branch=master)](https://github.com/warrenbrasil/HeaderPropagation/actions/workflows/build-and-publish.yml?branch=master)
 
 ## About HeaderPropagation
 
