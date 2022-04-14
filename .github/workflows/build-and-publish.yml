@@ -1,0 +1,31 @@
+name: build-and-publish
+
+env:
+  PROJECT: HeaderPropagation
+  NUGET_USER: oiwarren
+  NUGET_API_KEY: ${{ secrets.NUGETAPIKEY }}
+  NUGET_SOURCE: https://nuget.pkg.github.com/warrenbrasil/index.json
+  NUGET_SOURCE_NAME: github
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET 6.0
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+      - name: Nuget config
+        shell: bash
+        run: dotnet nuget add source $NUGET_SOURCE -n $NUGET_SOURCE_NAME -u $NUGET_USER -p $NUGET_API_KEY --store-password-in-clear-text
+      - name: Restore
+        run: dotnet restore
+      - name: Build release
+        run: dotnet build -c Release
+      - name: Push packages
+        run: dotnet nuget push "**/$PROJECT*.nupkg" -s $NUGET_SOURCE_NAME --skip-duplicate

@@ -1,12 +1,12 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Microsoft.AspNetCore.HeaderPropagation.Tests
@@ -155,6 +155,20 @@ namespace Microsoft.AspNetCore.HeaderPropagation.Tests
             // Assert
             Assert.Contains("in", CapturedHeaders.Keys);
             Assert.Equal("test", CapturedHeaders["in"]);
+        }
+
+        [Fact]
+        public async Task PreferEmptyValuesFromValueFilter_OverRequestHeader()
+        {
+            // Arrange
+            Configuration.Headers.Add("in", (context) => StringValues.Empty);
+            Context.Request.Headers.Add("in", "no");
+
+            // Act
+            await Middleware.Invoke(Context);
+
+            // Assert
+            Assert.DoesNotContain("in", CapturedHeaders.Keys);
         }
 
         [Fact]

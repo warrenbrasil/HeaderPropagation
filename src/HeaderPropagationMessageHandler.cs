@@ -1,12 +1,12 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Primitives;
 using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Primitives;
 
 namespace Microsoft.AspNetCore.HeaderPropagation
 {
@@ -62,25 +62,25 @@ namespace Microsoft.AspNetCore.HeaderPropagation
                 var hasContent = request.Content != null;
 
                 if (!request.Headers.TryGetValues(entry.OutboundHeaderName, out var _) &&
-                    !(hasContent && request.Content.Headers.TryGetValues(entry.OutboundHeaderName, out var _)))
+                    !(hasContent && request.Content!.Headers.TryGetValues(entry.OutboundHeaderName, out var _)))
                 {
                     if (captured.TryGetValue(entry.CapturedHeaderName, out var stringValues) &&
                         !StringValues.IsNullOrEmpty(stringValues))
                     {
                         if (stringValues.Count == 1)
                         {
-                            var value = (string)stringValues;
+                            var value = stringValues.ToString();
                             if (!request.Headers.TryAddWithoutValidation(entry.OutboundHeaderName, value) && hasContent)
                             {
-                                request.Content.Headers.TryAddWithoutValidation(entry.OutboundHeaderName, value);
+                                request.Content!.Headers.TryAddWithoutValidation(entry.OutboundHeaderName, value);
                             }
                         }
                         else
                         {
-                            var values = (string[])stringValues;
+                            var values = stringValues.ToArray();
                             if (!request.Headers.TryAddWithoutValidation(entry.OutboundHeaderName, values) && hasContent)
                             {
-                                request.Content.Headers.TryAddWithoutValidation(entry.OutboundHeaderName, values);
+                                request.Content!.Headers.TryAddWithoutValidation(entry.OutboundHeaderName, values);
                             }
                         }
                     }
