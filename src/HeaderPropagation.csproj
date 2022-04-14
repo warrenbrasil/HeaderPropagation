@@ -6,7 +6,10 @@
       All code is licensed under the Apache License, Version 2.0 and copyrighted by the .NET Foundation.
     </Description>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <Authors>Fernando Luiz de Lima</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Warren Brasil</Authors>
+    <Company>Warren Brasil</Company>
+    <Copyright>Warren Brasil</Copyright>
     <PackageTags>HttpClient;HttpClientFactory;AspNetCore</PackageTags>
     <PackageLicenseUrl>https://github.com/warrenbrasil/HeaderPropagation/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/warrenbrasil/HeaderPropagation</PackageProjectUrl>
@@ -18,6 +21,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <Nullable>enable</Nullable>
     <LangVersion>Latest</LangVersion>
+    <Version>4.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

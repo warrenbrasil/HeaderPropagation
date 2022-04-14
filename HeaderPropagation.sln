@@ -22,7 +22,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeaderPropagationSample", "samples\HeaderPropagationSample\HeaderPropagationSample.csproj", "{52674321-0D9A-4D1C-9144-E71F3F303464}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeaderPropagationSample", "samples\HeaderPropagationSample\HeaderPropagationSample.csproj", "{52674321-0D9A-4D1C-9144-E71F3F303464}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{6E97423E-4A40-4A71-8D7D-F4F3FA815BB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{57409347-62F0-4C29-9BDB-CD363123EF80}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build-and-publish.yml = .github\workflows\build-and-publish.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +57,8 @@ Global
 		{A8DE6795-8BD6-4F13-95C4-F045D0C7DECD} = {5D9FAE6A-05CA-4D0D-AD1C-ED046869C3EE}
 		{754E4793-8C7C-40C5-984C-6AC9941062BC} = {A41FC012-8B41-4039-B723-7D60219B8761}
 		{52674321-0D9A-4D1C-9144-E71F3F303464} = {430B16DA-E8AA-4825-A08B-4B77F3982E24}
+		{6E97423E-4A40-4A71-8D7D-F4F3FA815BB3} = {38CDE8B4-A8AC-402F-9EB3-6759BCF98A64}
+		{57409347-62F0-4C29-9BDB-CD363123EF80} = {6E97423E-4A40-4A71-8D7D-F4F3FA815BB3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5357F375-63BB-47F3-A44B-1A5E6D21CC2A}
