@@ -1,5 +1,9 @@
 [![build-and-publish Workflow Status](https://github.com/warrenbrasil/HeaderPropagation/actions/workflows/build-and-publish.yml/badge.svg?branch=master)](https://github.com/warrenbrasil/HeaderPropagation/actions/workflows/build-and-publish.yml?branch=master)
 
+|                     Package                    |                       Github Packages                      |
+|:----------------------------------------------:|:----------------------------------------------------------:|
+| [HeaderPropagation](https://github.com/warrenbrasil/HeaderPropagation/packages/1365822) | ![Github](https://img.shields.io/badge/github-v4.0.0-blue)) |
+
 ## About HeaderPropagation
 
 [ASP.NET Core middleware](https://github.com/dotnet/aspnetcore/tree/main/src/Middleware/HeaderPropagation) to propagate HTTP headers from the incoming request to the outgoing HTTP Client requests written in netstandard2.0.
