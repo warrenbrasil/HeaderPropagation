@@ -7,15 +7,16 @@
     </Description>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>HeaderPropagation</PackageId>
     <Authors>Warren Brasil</Authors>
     <Company>Warren Brasil</Company>
     <Copyright>Warren Brasil</Copyright>
     <PackageTags>HttpClient;HttpClientFactory;AspNetCore</PackageTags>
-    <PackageLicenseUrl>https://github.com/warrenbrasil/HeaderPropagation/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/warrenbrasil/HeaderPropagation</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/warrenbrasil/HeaderPropagation.git</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/warrenbrasil/core-header-propagation/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/warrenbrasil/core-header-propagation</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/warrenbrasil/core-header-propagation.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>https://github.com/warrenbrasil/HeaderPropagation/releases</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/warrenbrasil/core-header-propagation/releases</PackageReleaseNotes>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>

@@ -1,8 +1,8 @@
-[![build-and-publish Workflow Status](https://github.com/warrenbrasil/HeaderPropagation/actions/workflows/build-and-publish.yml/badge.svg?branch=master)](https://github.com/warrenbrasil/HeaderPropagation/actions/workflows/build-and-publish.yml?branch=master)
+[![build-and-publish Workflow Status](https://github.com/warrenbrasil/core-header-propagation/actions/workflows/build-and-publish.yml/badge.svg?branch=master)](https://github.com/warrenbrasil/core-header-propagation/actions/workflows/build-and-publish.yml?branch=master)
 
 |                     Package                    |                       Github Packages                      |
 |:----------------------------------------------:|:----------------------------------------------------------:|
-| [HeaderPropagation](https://github.com/warrenbrasil/HeaderPropagation/packages/1365822) | ![Github](https://img.shields.io/badge/github-v4.0.0-blue) |
+| [HeaderPropagation](https://github.com/warrenbrasil/core-header-propagation/packages/1365822) | ![Github](https://img.shields.io/badge/github-v4.0.0-blue) |
 
 ## About HeaderPropagation
 
