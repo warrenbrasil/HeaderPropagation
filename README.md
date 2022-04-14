@@ -1,19 +1,13 @@
-[![Build Status](https://alefranz.visualstudio.com/HeaderPropagation/_apis/build/status/Build?branchName=master)](https://alefranz.visualstudio.com/HeaderPropagation/_build/latest?definitionId=3&branchName=master) [![](https://img.shields.io/nuget/v/HeaderPropagation.svg)](https://www.nuget.org/packages/HeaderPropagation/)
-
 ## About HeaderPropagation
 
-This is a backport to ASP.NET Core 2.1 (and 2.2) of the
-[HeaderPropagation middleware](https://github.com/aspnet/AspNetCore/pull/7921) I had recently contributed to the
-[ASP.NET Core](https://github.com/aspnet/AspNetCore) project.
+[ASP.NET Core middleware](https://github.com/dotnet/aspnetcore/tree/main/src/Middleware/HeaderPropagation) to propagate HTTP headers from the incoming request to the outgoing HTTP Client requests written in netstandard2.0.
 All code is licensed under the Apache License, Version 2.0 and copyrighted by the [.NET Foundation](https://dotnetfoundation.org/).
 
-If you are using ASP.NET Core 3.0, please use the official package [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation/).
-
 ## Motivation
-I believe it is a common use case which deserves to be included in ASP.NET Core.
+It is a common use case which deserves to be included in ASP.NET Core.
 Its main use case is probably to track distributed transaction which requires the ability to pass through a transaction identifier as well as generating a new one when not present.
 
-Given the ASP.NET Core 3.0 release is quite far away, and the current policy doesn't allow to backport new features to already shipped releases, I have created this package as [recommended](https://github.com/aspnet/AspNetCore/pull/7921#issuecomment-479717164) so it can be used today on projects based on ASP.NET Core 2.1 or 2.2.
+The current ASP.NET Core policy doesn't allow to backport new features to already shipped releases, so this package has been created as [recommended](https://github.com/aspnet/AspNetCore/pull/7921#issuecomment-479717164), so it can be used today on projects that want/need to target netstandard2.0.
 
 ## Usage
 
@@ -46,6 +40,7 @@ services.AddHttpClient<GitHubClient>(c =>
 {
     c.BaseAddress = new Uri("https://api.github.com/");
     c.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
+
 }).AddHeaderPropagation();
 ```
 
@@ -56,13 +51,14 @@ services.AddHttpClient("example", c =>
 {
     c.BaseAddress = new Uri("https://api.github.com/");
     c.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
+
 }).AddHeaderPropagation(o =>
 {
     o.Headers.Add("User-Agent", "Source");
 });
 ```
 
-See [samples/WebApplication](samples/WebApplication).
+See [samples/HeaderPropagationSample](samples/HeaderPropagationSample).
 
 ## Behaviour
 
@@ -85,7 +81,5 @@ outbound calls.
 - `OutboundHeaderName` is the name of the header to be added to the outgoing http requests. If not specified, defaults to `CapturedHeaderName`.
 
 # Acknowledgements
-
-This feature would not have been possible without the help of [@rynowak](https://github.com/rynowak) who helped to refine it and get it merged into [ASP.NET Core](https://github.com/aspnet/AspNetCore).
 
 You can find the [list of contributions](https://github.com/aspnet/AspNetCore/commits/master/src/Middleware/HeaderPropagation) in the original repository.
