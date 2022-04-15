@@ -2,7 +2,7 @@
 
 |                     Package                    |                       Github Packages                      |
 |:----------------------------------------------:|:----------------------------------------------------------:|
-| [HeaderPropagation](https://github.com/warrenbrasil/core-header-propagation/packages/1365885) | ![Github](https://img.shields.io/badge/github-v4.0.0-blue) |
+| [HeaderPropagation](https://github.com/warrenbrasil/core-header-propagation/packages/1367513) | ![Github](https://img.shields.io/badge/github-v4.0.0-blue) |
 
 ## About HeaderPropagation
 
