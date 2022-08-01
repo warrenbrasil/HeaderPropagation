@@ -1,31 +1,76 @@
-name: build-and-publish
-
-env:
-  PROJECT: HeaderPropagation
-  NUGET_USER: oiwarren
-  NUGET_API_KEY: ${{ secrets.NUGETAPIKEY }}
-  NUGET_SOURCE: https://nuget.pkg.github.com/warrenbrasil/index.json
-  NUGET_SOURCE_NAME: github
+name: publish
 
 on:
   push:
-    branches: [ master ]
+    branches: [develop, staging, main, master]
 
 jobs:
-  build-and-publish:
+  tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup .NET 6.0
-        uses: actions/setup-dotnet@v1
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Checkout core-actions
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          repository: warrenbrasil/core-actions
+          token: ${{ secrets.WARRENBRASIL_GITHUB_PAT }}
+          path: .github/actions
+
+      - name: Configure .NET
+        uses: ./.github/actions/dotnet-config
         with:
           dotnet-version: 6.0.x
-      - name: Nuget config
-        shell: bash
-        run: dotnet nuget add source $NUGET_SOURCE -n $NUGET_SOURCE_NAME -u $NUGET_USER -p $NUGET_API_KEY --store-password-in-clear-text
-      - name: Restore
-        run: dotnet restore
-      - name: Build release
-        run: dotnet build -c Release
-      - name: Push packages
-        run: dotnet nuget push "**/$PROJECT*.nupkg" -s $NUGET_SOURCE_NAME --skip-duplicate
+          nuget-user: ${{ secrets.NUGET_USER }}
+          nuget-api-key: ${{ secrets.NUGETAPIKEY }}
+          nuget-source: ${{ secrets.NUGET_SOURCE }}
+          nuget-source-name: ${{ secrets.NUGET_SOURCE_NAME }}
+
+      - name: Run SonarQube Scan
+        uses: ./.github/actions/sonar-qube
+        with:
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+          sonar-host-url: ${{ secrets.SONAR_HOST_URL }}
+          sonar-project-key: warrenbrasil_core-header-propagation_AYJaSjZGdvQdQBWqXVCf
+          sonar-organization: warrenbrasil
+          solution: HeaderPropagation
+          pull-request: false
+          branch-name: ${{ github.head_ref || github.ref_name }}
+
+  build-and-publish:
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Checkout core-actions
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          repository: warrenbrasil/core-actions
+          token: ${{ secrets.WARRENBRASIL_GITHUB_PAT }}
+          path: .github/actions
+
+      - name: Configure .NET
+        uses: ./.github/actions/dotnet-config
+        with:
+          dotnet-version: 6.0.x
+          nuget-user: ${{ secrets.NUGET_USER }}
+          nuget-api-key: ${{ secrets.NUGETAPIKEY }}
+          nuget-source: ${{ secrets.NUGET_SOURCE }}
+          nuget-source-name: ${{ secrets.NUGET_SOURCE_NAME }}
+
+      - name: Push Packages
+        uses: ./.github/actions/dotnet-pack
+        with:
+          solution: HeaderPropagation
+          project: HeaderPropagation
+          nuget-source-name: ${{ secrets.NUGET_SOURCE_NAME }}
+          nuget-api-key: ${{ secrets.NUGETAPIKEY }}

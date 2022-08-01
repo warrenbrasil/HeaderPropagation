@@ -1,0 +1,42 @@
+name: Pull Request SonarQube Analysis
+
+on:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Checkout core-actions
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          repository: warrenbrasil/core-actions
+          token: ${{ secrets.WARRENBRASIL_GITHUB_PAT }}
+          path: .github/actions
+
+      - name: Configure .NET
+        uses: ./.github/actions/dotnet-config
+        with:
+          dotnet-version: 6.0.x
+          nuget-user: ${{ secrets.NUGET_USER }}
+          nuget-api-key: ${{ secrets.NUGETAPIKEY }}
+          nuget-source: ${{ secrets.NUGET_SOURCE }}
+          nuget-source-name: ${{ secrets.NUGET_SOURCE_NAME }}
+
+      - name: Run SonarQube Scan
+        uses: ./.github/actions/sonar-qube
+        with:
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+          sonar-host-url: ${{ secrets.SONAR_HOST_URL }}
+          sonar-project-key: warrenbrasil_core-header-propagation_AYJaSjZGdvQdQBWqXVCf
+          sonar-organization: warrenbrasil
+          solution: HeaderPropagation
+          pull-request: true
+          pull-request-base: ${{ github.event.pull_request.base.ref }}
+          pull-request-head: ${{ github.event.pull_request.head.ref }}
