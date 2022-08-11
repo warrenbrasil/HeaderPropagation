@@ -18,7 +18,7 @@ jobs:
         with:
           fetch-depth: 0
           repository: warrenbrasil/core-actions
-          token: ${{ secrets.WARRENBRASIL_GITHUB_PAT }}
+          token: ${{ secrets.WARREN_ACTIONS_PAT }}
           path: .github/actions
 
       - name: Configure .NET
@@ -55,7 +55,7 @@ jobs:
         with:
           fetch-depth: 0
           repository: warrenbrasil/core-actions
-          token: ${{ secrets.WARRENBRASIL_GITHUB_PAT }}
+          token: ${{ secrets.WARREN_ACTIONS_PAT }}
           path: .github/actions
 
       - name: Configure .NET
