@@ -37,6 +37,8 @@ jobs:
           sonar-project-key: warrenbrasil_core-header-propagation_AYJaSjZGdvQdQBWqXVCf
           sonar-organization: warrenbrasil
           solution: HeaderPropagation
+          tests-dir: test
           pull-request: true
+          pull-request-number: ${{ github.event.pull_request.number }}
           pull-request-base: ${{ github.event.pull_request.base.ref }}
           pull-request-head: ${{ github.event.pull_request.head.ref }}
