@@ -1,7 +1,9 @@
-[![build-and-publish Workflow Status](https://github.com/warrenbrasil/core-header-propagation/actions/workflows/build-and-publish.yml/badge.svg?branch=master)](https://github.com/warrenbrasil/core-header-propagation/actions/workflows/build-and-publish.yml?branch=master)
+# Header Propagation
 
-|                     Package                    |                       Github Packages                      |
-|:----------------------------------------------:|:----------------------------------------------------------:|
+[![build-and-publish Workflow Status](https://github.com/warrenbrasil/core-header-propagation/actions/workflows/build-and-publish.yml/badge.svg?branch=master)](https://github.com/warrenbrasil/core-header-propagation/actions/workflows/build-and-publish.yml?branch=master) [![Quality Gate Status](https://sonarqube.dev.warren.com.br:8443/api/project_badges/measure?project=warrenbrasil_core-header-propagation_AYJaSjZGdvQdQBWqXVCf&metric=alert_status&token=squ_c1e3c94ec1c1d5dcfd8fd474da12b41072864bfd)](https://sonarqube.dev.warren.com.br:8443/dashboard?id=warrenbrasil_core-header-propagation_AYJaSjZGdvQdQBWqXVCf) [![Coverage](https://sonarqube.dev.warren.com.br:8443/api/project_badges/measure?project=warrenbrasil_core-header-propagation_AYJaSjZGdvQdQBWqXVCf&metric=coverage&token=squ_c1e3c94ec1c1d5dcfd8fd474da12b41072864bfd)](https://sonarqube.dev.warren.com.br:8443/dashboard?id=warrenbrasil_core-header-propagation_AYJaSjZGdvQdQBWqXVCf)
+
+|                                            Package                                            |                      Github Packages                       |
+| :-------------------------------------------------------------------------------------------: | :--------------------------------------------------------: |
 | [HeaderPropagation](https://github.com/warrenbrasil/core-header-propagation/packages/1367513) | ![Github](https://img.shields.io/badge/github-v4.0.0-blue) |
 
 ## About HeaderPropagation
@@ -10,6 +12,7 @@
 All code is licensed under the Apache License, Version 2.0 and copyrighted by the [.NET Foundation](https://dotnetfoundation.org/).
 
 ## Motivation
+
 It is a common use case which deserves to be included in ASP.NET Core.
 Its main use case is probably to track distributed transaction which requires the ability to pass through a transaction identifier as well as generating a new one when not present.
 
@@ -75,7 +78,7 @@ Each entry define the behaviour to propagate that header as follows:
 - `InboundHeaderName` is the name of the header to be captured.
 - `CapturedHeaderName` determines the name of the header to be used by default for the outbound http requests. If not specified, defaults to `InboundHeaderName`.
 - When present, the `ValueFilter` delegate will be evaluated once per request to provide the transformed
-header value. The delegate will be called regardless of whether a header with the name corresponding to `InboundHeaderName` is present in the request. It should return `StringValues.Empty` to not add the header.
+  header value. The delegate will be called regardless of whether a header with the name corresponding to `InboundHeaderName` is present in the request. It should return `StringValues.Empty` to not add the header.
 - If multiple configurations for the same header are present, the first which returns a value wins.
 
 Please note the factory is called only once per incoming request and the same value will be used by all the
