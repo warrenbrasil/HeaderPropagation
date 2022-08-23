@@ -12,16 +12,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Checkout core-actions
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          repository: warrenbrasil/core-actions
-          token: ${{ secrets.WARREN_ACTIONS_PAT }}
-          path: .github/actions
-
       - name: Configure .NET
-        uses: ./.github/actions/dotnet-config
+        uses: warrenbrasil/dotnet-config@v1
         with:
           dotnet-version: 6.0.x
           nuget-user: ${{ secrets.NUGET_USER }}
@@ -30,7 +22,7 @@ jobs:
           nuget-source-name: ${{ secrets.NUGET_SOURCE_NAME }}
 
       - name: Run SonarQube Scan
-        uses: ./.github/actions/sonar-qube
+        uses: warrenbrasil/sonar-qube@v1
         with:
           sonar-token: ${{ secrets.SONAR_TOKEN }}
           sonar-host-url: ${{ secrets.SONAR_HOST_URL }}
